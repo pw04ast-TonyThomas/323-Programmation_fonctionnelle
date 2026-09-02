@@ -1,4 +1,6 @@
 ﻿using DataSeries;
+using System.Data.Common;
+using System.Text.RegularExpressions;
 
 namespace Fil_Rouge_TonyThomas_323
 {
@@ -6,28 +8,58 @@ namespace Fil_Rouge_TonyThomas_323
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-
-            DataSeries.DataSeries<DataPoint<ValorantMatch>> valorant = DataSeries.DataSeries<DataPoint<ValorantMatch>>.From(new[]
+            DataPoint<ValorantMatch> ParseValorant(string[] cols)
             {
-                new DataPoint<ValorantMatch>(DateTime.Now, new ValorantMatch("Léa", "Jett",  18, 6, 4, 8,  13, true)),
-                new DataPoint<ValorantMatch>(DateTime.Now, new ValorantMatch("Léa", "Reyna", 22, 8, 2, 11,  9, false)),
-                new DataPoint<ValorantMatch>(DateTime.Now, new ValorantMatch("Léa", "Neon",  20, 7, 5,  9, 13, true)),
-            });
+                DateTime time = DateTime.Parse(cols[0]);
+                ValorantMatch match = new ValorantMatch(
+                    cols[1],
+                    cols[2],
+                    int.Parse(cols[3]),
+                    int.Parse(cols[4]),
+                    int.Parse(cols[5]),
+                    int.Parse(cols[6]),
+                    int.Parse(cols[7]),
+                    bool.Parse(cols[8])
+                );
+                return new DataPoint<ValorantMatch>(time, match);
+            }
 
-            DataSeries.DataSeries<DataPoint<LolMatch>> lol = DataSeries.DataSeries<DataPoint<LolMatch>>.From(new[]
+            DataPoint<Cs2Match> ParseCs2(string[] cols) 
             {
-                new DataPoint<LolMatch>(DateTime.Now, new LolMatch("Léa", "Jett",  18, 6, 4, 8,  13, true)),
-                new DataPoint<LolMatch>(DateTime.Now, new LolMatch("Léa", "Reyna", 22, 8, 2, 11,  9, false)),
-                new DataPoint<LolMatch>(DateTime.Now, new LolMatch("Léa", "Neon",  20, 7, 5,  9, 13, true)),
-            });
+                DateTime time = DateTime.Parse(cols[0]);
+                Cs2Match match = new Cs2Match(
+                    cols[1],              // player
+                    cols[2],              // map
+                    cols[3],              // startSide (côté joué en 1re mi-temps — CT ou T)
+                    int.Parse(cols[4]),   // kills
+                    int.Parse(cols[5]),   // deaths
+                    int.Parse(cols[6]),   // assists
+                    int.Parse(cols[7]),   // mvps
+                    bool.Parse(cols[8])   // won
+                );
+                return new DataPoint<Cs2Match>(time, match);
+            }
 
-            DataSeries.DataSeries<DataPoint<Cs2Match>> cs2 = DataSeries.DataSeries < DataPoint<Cs2Match>>.From(new[]
-{
-                new DataPoint<Cs2Match>(DateTime.Now, new Cs2Match("Léa", "Jett",  "CT", 6, 4, 8,  13, true)),
-                new DataPoint<Cs2Match>(DateTime.Now, new Cs2Match("Léa", "Reyna", "CT", 8, 2, 11,  9, false)),
-                new DataPoint<Cs2Match>(DateTime.Now, new Cs2Match("Léa", "Neon",  "T", 7, 5,  9, 13, true)),
-            });
+            DataPoint<LolMatch> ParseLol(string[] cols)
+            {
+                DateTime time = DateTime.Parse(cols[0]);
+                LolMatch match = new LolMatch(
+                    cols[1],              // player
+                    cols[2],              // champion
+                    int.Parse(cols[4]),   // kills
+                    int.Parse(cols[5]),   // deaths
+                    int.Parse(cols[6]),   // assists
+                    int.Parse(cols[7]),   // cs
+                    int.Parse(cols[8]),   // visionScore
+                    bool.Parse(cols[9])   // won
+                );
+                return new DataPoint<LolMatch>(time, match);
+            } 
+
+            var valorant = DataSeries<DataPoint<ValorantMatch>>.FromCsv("../../../data/valorant.csv", ParseValorant);
+            var cs2 = DataSeries<DataPoint<Cs2Match>>.FromCsv("../../../data/cs2.csv", ParseCs2);
+            var lol = DataSeries<DataPoint<LolMatch>>.FromCsv("../../../data/lol.csv", ParseLol);
+
 
             Console.WriteLine(valorant.Count);
             Console.WriteLine(lol.Count);

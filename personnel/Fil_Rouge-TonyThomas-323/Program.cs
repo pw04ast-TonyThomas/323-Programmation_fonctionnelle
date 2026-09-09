@@ -1,6 +1,11 @@
 ﻿using DataSeries;
+using System;
+using System.Linq;
 using System.Data.Common;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Fil_Rouge_TonyThomas_323
 {
@@ -60,6 +65,11 @@ namespace Fil_Rouge_TonyThomas_323
             var cs2 = DataSeries<DataPoint<Cs2Match>>.FromCsv("../../../data/cs2.csv", ParseCs2);
             var lol = DataSeries<DataPoint<LolMatch>>.FromCsv("../../../data/lol.csv", ParseLol);
 
+            DataSeries<DataPoint<Cs2Match>> tonyGenerated = MatchGenerator.GenerateCs2("Tony", 20);
+            Console.WriteLine(tonyGenerated.Count);
+            DataSeries<DataPoint<Cs2Match>> tonyValid = DataSeries<DataPoint<Cs2Match>>.From(tonyGenerated.Values.Where(cs2Match => cs2Match.Value.Kills + cs2Match.Value.Assists <= 50 && cs2Match.Value.Deaths >= 1));
+
+            Console.WriteLine($"Avant : {tonyGenerated.Count}, après : {tonyValid.Count}");
 
             Console.WriteLine(valorant.Count);
             Console.WriteLine(lol.Count);

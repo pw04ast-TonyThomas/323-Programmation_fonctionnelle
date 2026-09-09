@@ -32,5 +32,93 @@ namespace Fil_Rouge_TonyThomas_323
                     ))
             );
         }
+
+        public static DataSeries<DataPoint<ValorantMatch>> GenerateValorant(string player, int count, int seed = 42)
+        {
+            Random rng = new Random(seed);
+
+            string[] agents =
+            {
+                "Jett",
+                "Omen",
+                "Reyna",
+                "Astra",
+                "Brimstone",
+                "Neon",
+                "Viper"
+            };
+
+            var start = new DateTime(2024, 1, 1);
+
+            return DataSeries<DataPoint<ValorantMatch>>.From(
+                Enumerable.Range(1, count)
+                    .Select(i =>
+                    {
+                        int kills = rng.Next(9, 26);
+                        int deaths = rng.Next(5, 14);
+                        int assists = rng.Next(2, 12);
+                        int headshots = rng.Next(2, Math.Min(kills, 14) + 1);
+                        int roundsWon = rng.Next(5, 14);
+
+                        return new DataPoint<ValorantMatch>(
+                            start.AddDays(i),
+                            new ValorantMatch(
+                                player,
+                                agents[rng.Next(agents.Length)],
+                                kills,
+                                deaths,
+                                assists,
+                                headshots,
+                                roundsWon,
+                                rng.Next(2) == 1
+                            )
+                        );
+                    })
+            );
+        }
+
+        public static DataSeries<DataPoint<LolMatch>> GenerateLol(string player, int count, int seed = 42)
+        {
+            Random rng = new Random(seed);
+
+            string[] champions =
+            {
+                "Thresh",
+                "Nautilus",
+                "Lulu",
+                "Soraka",
+                "Leona",
+                "Blitzcrank",
+                "Janna"
+            };
+
+            var start = new DateTime(2024, 1, 1);
+
+            return DataSeries<DataPoint<LolMatch>>.From(
+                Enumerable.Range(1, count)
+                    .Select(i =>
+                    {
+                        int kills = rng.Next(0, 4);
+                        int deaths = rng.Next(3, 8);
+                        int assists = rng.Next(14, 26);
+                        int cs = rng.Next(32, 48);
+                        int visionScore = rng.Next(52, 83);
+
+                        return new DataPoint<LolMatch>(
+                            start.AddDays(i),
+                            new LolMatch(
+                                player,
+                                champions[rng.Next(champions.Length)],
+                                kills,
+                                deaths,
+                                assists,
+                                cs,
+                                visionScore,
+                                rng.Next(2) == 1
+                            )
+                        );
+                    })
+            );
+        }
     }
 }

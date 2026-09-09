@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Fil_Rouge-TonyThomas-323": {
+      "commandName": "Project",
+      "commandLineArgs": "--generate all"
+    }
+  }
+}

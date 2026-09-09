@@ -62,53 +62,65 @@ namespace Fil_Rouge_TonyThomas_323
                 return new DataPoint<LolMatch>(time, match);
             } 
 
-            void exportCs2(DataSeries<DataPoint<Cs2Match>> matches, string path)
+            void ExportCs2(DataSeries<DataPoint<Cs2Match>> matches, string path)
             {
                 var header = "date,player,map,start_side,kills,deaths,assists,mvps,won";
                 var lines = matches.Values.Select(m => $"{m.Timestamp:yyyy-MM-dd},{m.Value.Player},{m.Value.Map},{m.Value.StartSide},{m.Value.Kills},{m.Value.Deaths},{m.Value.Assists},{m.Value.Mvps},{m.Value.Won.ToString().ToLower()}");
                 File.WriteAllLines(path, lines.Prepend(header));
             }
 
-            void exportValorant(DataSeries<DataPoint<ValorantMatch>> matches, string path)
+            void ExportValorant(DataSeries<DataPoint<ValorantMatch>> matches, string path)
             {
                 var header = "date,player,agent,kills,deaths,assists,headshots,rounds_won,won";
                 var lines = matches.Values.Select(m => $"{m.Timestamp:yyyy-MM-dd},{m.Value.Player},{m.Value.Agent},{m.Value.Kills},{m.Value.Deaths},{m.Value.Assists},{m.Value.Headshots},{m.Value.RoundsWon},{m.Value.Won.ToString().ToLower()}");
                 File.WriteAllLines(path, lines.Prepend(header));
             }
 
-            void exportLol(DataSeries<DataPoint<LolMatch>> matches, string path)
+            void ExportLol(DataSeries<DataPoint<LolMatch>> matches, string path)
             {
                 var header = "date,player,champion,role,kills,deaths,assists,cs,vision_score,won";
                 var lines = matches.Values.Select(m => $"{m.Timestamp:yyyy-MM-dd},{m.Value.Player},{m.Value.Champion},Support,{m.Value.Kills},{m.Value.Deaths},{m.Value.Assists},{m.Value.Cs},{m.Value.VisionScore},{m.Value.Won.ToString().ToLower()}");
                 File.WriteAllLines(path, lines.Prepend(header));
             }
 
+            // Import matches
             var valorant = DataSeries<DataPoint<ValorantMatch>>.FromCsv("../../../data/valorant.csv", ParseValorant);
             var cs2 = DataSeries<DataPoint<Cs2Match>>.FromCsv("../../../data/cs2.csv", ParseCs2);
             var lol = DataSeries<DataPoint<LolMatch>>.FromCsv("../../../data/lol.csv", ParseLol);
 
-            // Cs2 Raphael
-            DataSeries<DataPoint<Cs2Match>> raphaelGenerated = MatchGenerator.GenerateCs2("Raphael", 20);
-            DataSeries<DataPoint<Cs2Match>> raphaelValid = DataSeries<DataPoint<Cs2Match>>.From(raphaelGenerated.Values.Where(cs2Match => cs2Match.Value.Kills + cs2Match.Value.Assists <= 50 && cs2Match.Value.Deaths >= 1));
-            // Valorant Dylan
-            DataSeries<DataPoint<ValorantMatch>> dylanGenerated = MatchGenerator.GenerateValorant("Dylan", 20);
-            DataSeries<DataPoint<ValorantMatch>> dylanValid = DataSeries<DataPoint<ValorantMatch>>.From(dylanGenerated.Values.Where(valorantMatch => valorantMatch.Value.Kills + valorantMatch.Value.Assists <= 50 && valorantMatch.Value.Deaths >= 1));
-            // Lol Noé
-            DataSeries<DataPoint<LolMatch>> noeGenerated = MatchGenerator.GenerateLol("Noe", 20);
-            DataSeries<DataPoint<LolMatch>> noeValid = DataSeries<DataPoint<LolMatch>>.From(noeGenerated.Values.Where(lolmatch => lolmatch.Value.Kills + lolmatch.Value.Assists <= 50 && lolmatch.Value.Deaths >= 1));
+            // Find Args and use them
+            if (args.Contains("--generate"))
+            {
+                var target = args[Array.IndexOf(args, "--generate") + 1];
 
-            exportCs2(raphaelValid, "../../../data/Cs2Raphael.csv");
-            exportValorant(dylanValid, "../../../data/ValorantDylan.csv");
-            exportLol(noeValid, "../../../data/LolNoe.csv");
+                var players = target == "all"
+                    ? new[] { "Raphaël", "Kiara", "Dylan", "Noé" }
+                    : new[] { target };
 
-
-
-
-            Console.WriteLine($"Avant : {raphaelGenerated.Count}, après : {raphaelValid.Count}");
-
-            Console.WriteLine(valorant.Count);
-            Console.WriteLine(lol.Count);
-            Console.WriteLine(cs2.Count);
+                foreach (var player in players)
+                {
+                    if (player == "Raphaël" || player == "Kiara")
+                    {
+                        DataSeries<DataPoint<Cs2Match>> series = MatchGenerator.GenerateCs2(player, 20);
+                        DataSeries<DataPoint<Cs2Match>> seriesValid = DataSeries<DataPoint<Cs2Match>>.From(series.Values.Where(cs2Match => cs2Match.Value.Kills + cs2Match.Value.Assists <= 50 && cs2Match.Value.Deaths >= 1));
+                        ExportCs2(seriesValid, $"../../../data/{player.ToLower()}_generated.csv");
+                    }
+                    else if (player == "Dylan")
+                    {
+                        DataSeries<DataPoint<ValorantMatch>> series = MatchGenerator.GenerateValorant(player, 20);
+                        DataSeries<DataPoint<ValorantMatch>> seriesValid = DataSeries<DataPoint<ValorantMatch>>.From(series.Values.Where(valorantMatch => valorantMatch.Value.Kills + valorantMatch.Value.Assists <= 50 && valorantMatch.Value.Deaths >= 1));
+                        ExportValorant(seriesValid, $"../../../data/{player.ToLower()}_generated.csv");
+                    }
+                    else if (player == "Noé")
+                    {
+                        DataSeries<DataPoint<LolMatch>> series = MatchGenerator.GenerateLol(player, 20);
+                        DataSeries<DataPoint<LolMatch>> seriesValid = DataSeries<DataPoint<LolMatch>>.From(series.Values.Where(valorantMatch => valorantMatch.Value.Kills + valorantMatch.Value.Assists <= 50 && valorantMatch.Value.Deaths >= 1));
+                        ExportLol(seriesValid, $"../../../data/{player.ToLower()}_generated.csv");
+                    }
+                    Console.WriteLine($"{player} : données générées et exportées");
+                }
+                return;
+            }
         }
     }
 }

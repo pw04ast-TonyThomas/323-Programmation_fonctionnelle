@@ -38,5 +38,10 @@ namespace DataSeries
         /// <param name="predicate">Predicate used to sanitize</param>
         /// <returns>sanitized DataSerie</returns>
         public DataSeries<T> Sanitize(Predicate<T> predicate) => DataSeries<T>.From(_data.Where(x => !predicate(x)));
+
+        public DataSeries<TResult> Transform<TResult>(Func<T, TResult> mapper)
+        {
+            return DataSeries<TResult>.From(_data.Select(x => mapper(x)));
+        }
     }
 }

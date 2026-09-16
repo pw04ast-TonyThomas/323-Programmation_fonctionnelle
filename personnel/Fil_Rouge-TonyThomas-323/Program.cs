@@ -85,8 +85,8 @@ namespace Fil_Rouge_TonyThomas_323
             }
 
             // Import matches
-            var valorant = DataSeries<DataPoint<ValorantMatch>>.FromCsv("../../../data/valorant.csv", ParseValorant);
             var cs2 = DataSeries<DataPoint<Cs2Match>>.FromCsv("../../../data/cs2.csv", ParseCs2);
+            var valorant = DataSeries<DataPoint<ValorantMatch>>.FromCsv("../../../data/valorant.csv", ParseValorant);
             var lol = DataSeries<DataPoint<LolMatch>>.FromCsv("../../../data/lol.csv", ParseLol);
 
             //// Find outliers
@@ -95,17 +95,38 @@ namespace Fil_Rouge_TonyThomas_323
             //Console.WriteLine(badValorant.Values.Count());
 
             // Sanitize
-            var sanitizedValorant = valorant.Sanitize(m => m.Value.Kills < 0 || m.Value.Kills > 50 || m.Value.Deaths < 0 || m.Value.Deaths > 30 || m.Value.Assists < 0);
-            //Console.WriteLine(valorant.Values.Count());
-            //Console.WriteLine(sanitizedValorant.Values.Count());
-
             var sanitizedCs2 = cs2.Sanitize(m => m.Value.Kills + m.Value.Assists > 50 || m.Value.Deaths < 0);
             //Console.WriteLine(cs2.Values.Count());
             //Console.WriteLine(sanitizedCs2.Values.Count());
 
+            var sanitizedValorant = valorant.Sanitize(m => m.Value.Kills < 0 || m.Value.Kills > 50 || m.Value.Deaths < 0 || m.Value.Deaths > 30 || m.Value.Assists < 0);
+            //Console.WriteLine(valorant.Values.Count());
+            //Console.WriteLine(sanitizedValorant.Values.Count());
+
             var sanitizedLol = lol.Sanitize(m => m.Value.Kills > 10 || m.Value.Deaths < 1 || m.Value.Assists < 0 || m.Value.Cs < 0);
             //Console.WriteLine(lol.Values.Count());
             //Console.WriteLine(sanitizedLol.Values.Count());
+
+            // mappers for KDA
+            double cs2Mapper(DataPoint<Cs2Match> match)
+            {
+                return (match.Value.Kills + match.Value.Assists) / match.Value.Deaths;
+            }
+
+            double valorantMapper(DataPoint<ValorantMatch> match)
+            {
+                return (match.Value.Kills + match.Value.Assists) / match.Value.Deaths;
+            }
+
+            double lolMapper(DataPoint<LolMatch> match)
+            {
+                return (match.Value.Kills + match.Value.Assists) / match.Value.Deaths;
+            }
+
+            // Get kda
+            var kdaCs2 = sanitizedCs2.Transform(cs2Mapper);
+            var kdaValorant = sanitizedValorant.Transform(valorantMapper);
+            var kdaLol = sanitizedLol.Transform(lolMapper);
 
 
             // Find Args and use them

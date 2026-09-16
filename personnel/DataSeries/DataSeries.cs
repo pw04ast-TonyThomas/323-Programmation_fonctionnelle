@@ -39,9 +39,23 @@ namespace DataSeries
         /// <returns>sanitized DataSerie</returns>
         public DataSeries<T> Sanitize(Predicate<T> predicate) => DataSeries<T>.From(_data.Where(x => !predicate(x)));
 
+        /// <summary>
+        /// Takes any DataSerie and transforms it into whatever the mapper given does
+        /// </summary>
+        /// <typeparam name="TResult">The result, of any type</typeparam>
+        /// <param name="mapper">the mapper that knows what transformation to do</param>
+        /// <returns></returns>
         public DataSeries<TResult> Transform<TResult>(Func<T, TResult> mapper)
         {
             return DataSeries<TResult>.From(_data.Select(x => mapper(x)));
+        }
+
+        public DataSeries<TResult> Normalize<TResult>(Func<T, T, T, TResult> evaluator)
+        {
+            var min = _data.Min();
+            var max = _data.Max();
+
+            return DataSeries<TResult>.From(_data.Select(x => evaluator(x, min, max)));
         }
     }
 }

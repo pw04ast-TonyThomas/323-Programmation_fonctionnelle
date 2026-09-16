@@ -128,6 +128,8 @@ namespace Fil_Rouge_TonyThomas_323
             var kdaValorant = sanitizedValorant.Transform(valorantMapper);
             var kdaLol = sanitizedLol.Transform(lolMapper);
 
+            
+
 
             // Find Args and use them
             string? gameArgs = args.Contains("--game") ? args[Array.IndexOf(args, "--game") + 1] : null;

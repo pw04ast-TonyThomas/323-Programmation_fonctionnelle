@@ -24,5 +24,19 @@ namespace DataSeries
             IEnumerable<string> lines = File.ReadAllLines(path).Skip(1);
             return new DataSeries<T>(lines.Select(line => Parser(line.Split(','))));
         }
+
+        /// <summary>
+        /// Returns the defined outliers without modifying the original DataSerie
+        /// </summary>
+        /// <param name="predicate">Predicate used to find the outliers</param>
+        /// <returns></returns>
+        public DataSeries<T> Outliers(Predicate<T> predicate) => DataSeries<T>.From(_data.Where(predicate.Invoke));
+
+        /// <summary>
+        /// returns a sanitized version of the DataSerie
+        /// </summary>
+        /// <param name="predicate">Predicate used to sanitize</param>
+        /// <returns>sanitized DataSerie</returns>
+        public DataSeries<T> Sanitize(Predicate<T> predicate) => DataSeries<T>.From(_data.Where(x => !predicate(x)));
     }
 }

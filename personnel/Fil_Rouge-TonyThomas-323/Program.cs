@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Intrinsics.Arm;
+using System.Threading.Tasks.Sources;
 
 namespace Fil_Rouge_TonyThomas_323
 {
@@ -88,6 +89,25 @@ namespace Fil_Rouge_TonyThomas_323
             var cs2 = DataSeries<DataPoint<Cs2Match>>.FromCsv("../../../data/cs2.csv", ParseCs2);
             var lol = DataSeries<DataPoint<LolMatch>>.FromCsv("../../../data/lol.csv", ParseLol);
 
+            //// Find outliers
+            //var badValorant = valorant.Outliers(m => m.Value.Kills < 20);
+            //Console.WriteLine(valorant.Values.Count());
+            //Console.WriteLine(badValorant.Values.Count());
+
+            // Sanitize
+            var sanitizedValorant = valorant.Sanitize(m => m.Value.Kills < 0 || m.Value.Kills > 50 || m.Value.Deaths < 0 || m.Value.Deaths > 30 || m.Value.Assists < 0);
+            Console.WriteLine(valorant.Values.Count());
+            Console.WriteLine(sanitizedValorant.Values.Count());
+
+            var sanitizedCs2 = cs2.Sanitize(m => m.Value.Kills + m.Value.Assists > 50 || m.Value.Deaths < 0);
+            Console.WriteLine(cs2.Values.Count());
+            Console.WriteLine(sanitizedCs2.Values.Count());
+
+            var sanitizedLol = lol.Sanitize(m => m.Value.Kills > 10 || m.Value.Deaths < 1 || m.Value.Assists < 0 || m.Value.Cs < 0);
+            Console.WriteLine(lol.Values.Count());
+            Console.WriteLine(sanitizedLol.Values.Count());
+
+
             // Find Args and use them
             if (args.Contains("--generate"))
             {
@@ -119,7 +139,7 @@ namespace Fil_Rouge_TonyThomas_323
                     }
                     Console.WriteLine($"{player} : données générées et exportées");
                 }
-                return;
+                // return;
             }
         }
     }

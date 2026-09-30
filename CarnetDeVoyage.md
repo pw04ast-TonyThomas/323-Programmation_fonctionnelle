@@ -5,9 +5,9 @@ Ce document relate les péripéties de ce voyage.
 
 <hr>
 
-## Semaine 35 (24 août)
+## Etape 1
 
-### Lundi
+### Lundi 24 août
 
 - On a découvert le thème du projet Plot Those Lines, chacun a choisi un domaine
 - Tout le monde a référencé son repo dans MarketPlace. Certains doivent encore ajouter un Readme.
@@ -17,7 +17,7 @@ Ce document relate les péripéties de ce voyage.
 
 - J'ai publié et annoncé la version 1.3 de gistodoc, pour importer les issues Github dans un document Word
 
-### Mercredi
+### Mercredi 26 août
 
 Notre but c'est qu'au bout de cette étape:
 
@@ -39,9 +39,9 @@ On n'est pas arrivé au bout de l'exercice, on reprendra ça la semaine prochain
 
 <hr>
 
-## Semaine 36 (31 août)
+## Etape 2
 
-### Lundi
+### Lundi 31 août
 
 La mission du jour était: finaliser l'analyse fonctionnelle et la planification initiale. Idéalement, il aurait dû être possible de faire la livraison de vendredi dès aujourd'hui en fin de matinée.
 
@@ -51,7 +51,7 @@ J'ai passé vers à peu près tout le monde. Le constat est que la rédaction de
 
 N'ayant reçu aucune livraison pour l'instant (mardi), j'en déduis que tout le monde a encore du travail à fournir pour arriver à ce stade.
 
-### Mercredi
+### Mercredi 2 septembre
 
 On a fait le checkpoint #1. Les résultats sont ... moyens. En même temps, très peu étaient ceux qui avaient révisé.
 
@@ -80,9 +80,9 @@ Les dix dernières minutes se passent "en roue libre". J'ai l'impression qu'il y
 
 <hr>
 
-## Semaine 37 (7 septembre)
+## Etape 3
 
-### Lundi
+### Lundi 7 septembre
 
 Rappel de l'une des valeurs Agile:
 
@@ -106,7 +106,7 @@ J'ai pu discuter 1-1 avec chacun. Malheureusement, MarketPlace était instable, 
 
 Mais tout le monde a une story en cours de réalisation.
 
-### Mercredi
+### Mercredi 9 septembre
 
 On a fait le checkpoint #2 sur les fonctions d'ordre supérieur et des première méthodes d'extension LinQ.
 
@@ -143,7 +143,7 @@ Au final, une petite moitié de la classe a commencé à faire le traitement d'e
 
 <hr>
 
-## Semaine 38
+## Etape 4
 
 ### Lundi 14 septembre
 
@@ -176,9 +176,11 @@ Un constat général : maintenant que le code a commencé, je veux pouvoir l'ex�
 
 ### Mercredi 16 septembre
 
-On commence par faire le checkpoint #3
+On est en effectif réduit aujourd'hui: huit sur douze.
 
-Ensuite on revient sur les exercices proposés la semaine passée:
+On a fait le checkpoint #3
+
+Ensuite on a fait le point sur les exercices proposés la semaine passée:
 
 - L'exercice 2 porte sur la génération et la transformation
   - 2.0 `DataSeries<T>` comme vraie série temporelle
@@ -191,36 +193,142 @@ Ensuite on revient sur les exercices proposés la semaine passée:
   - 3.2 Supprimer les erreurs (Where)
   - 3.3 CLI pour définir le comportement face aux erreurs
 
-Voici la synthèse que je fais sur la base des commits que je vois dans vos repos et des points de situation que vous avez rédigés :
+La synthèse est validée (pour les présents):
 
-|           | 2.1 | 2.2 | 2.3 | 2.4 | 3.1 | 3.2 | 3.3 |
-| --------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| albert    | OK  |     |     |     |     |     |     |
-| damienc   | OK  | OK  | OK  |     |     |     |     |
-| damienr   | OK  | OK  | OK  | OK  |     |     |     |
-| erdem     | OK  | OK  | OK  |     |     |     |     |
-| gianmarco | OK  | OK  | OK  |     |     |     |     |
-| gillian   | OK  | OK  |     |     |     |     |     |
-| kiril     | OK  | OK  | OK  |     |     |     |     |
-| sacha     | OK  | OK  |     | OK  |     |     |     |
-| snehan    | OK  | OK  | OK  |     |     |     |     |
-| theophile | OK  | OK  |     | OK  |     |     |     |
-| tony      | OK  | OK  | OK  | OK  |     |     |     |
-| zidane    | OK  | OK  |     |     |     |     |     |
+|           | Présent |  2.1  |  2.2  |  2.3  |  2.4  |  3.1  |  3.2  |  3.3  |
+| --------- | :-----: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| albert    |   \*    |  OK   |       |       |       |       |       |       |
+| damienc   |   \*    |  OK   |  OK   |  OK   |       |       |       |       |
+| damienr   |   \*    |  OK   |  OK   |  OK   |  OK   |       |       |       |
+| erdem     |         |  OK   |  OK   |  OK   |       |       |       |       |
+| gianmarco |   \*    |  OK   |  OK   |  OK   |       |       |       |       |
+| gillian   |         |  OK   |  OK   |       |       |       |       |       |
+| kiril     |   \*    |  OK   |  OK   |  OK   |       |       |       |       |
+| sacha     |   \*    |  OK   |  OK   |       |  OK   |       |       |       |
+| snehan    |   \*    |  OK   |  OK   |  OK   |       |       |       |       |
+| theophile |         |  OK   |  OK   |       |  OK   |       |       |       |
+| tony      |   \*    |  OK   |  OK   |  OK   |  OK   |       |       |       |
+| zidane    |         |  OK   |  OK   |       |       |       |       |       |
 
-On se donne une heure (jusqu'à la pause) pour finir ces exercices.
+On a une petite heure (jusqu'à la pause) pour finir ces exercices.
 
-Mais avant cela, la moitié d'entre vous devront défaire quelques changements demandés précédemment 😤.  
-En effet, au début de l'étape 2, nous avions voulu intégrer un Timestamp pour avoir de vraies Timeseries. Nous avions passé de `private readonly IEnumerable<T> _data;` à `private readonly IEnumerable<DataPoint<T>> _data;`. Cela va introduire un degré de complexité supplémentaire significatif pour la suite. Si vous aviez fait ce changement:
+Mais avant cela, certains ont dû défaire quelques changements demandés précédemment 😤.  
+En effet, au début de l'étape 2, nous avions voulu intégrer un Timestamp pour avoir de vraies Timeseries. Nous avions passé de `private readonly IEnumerable<T> _data;` à `private readonly IEnumerable<DataPoint<T>> _data;`. Cela a introduit un degré de complexité supplémentaire significatif pour la suite.  
+Le retour en arrière se fait ainsi:
 
-- Revenez à `private readonly IEnumerable<T> _data;`
-- Ajoutez une propriété `public DateTime Timestamp { get; }` aux trois types de matches
-- Corrigez toutes les erreurs que cela cause
+- Revenir à `private readonly IEnumerable<T> _data;`
+- Supprimer la classe `DataPoint<T>`
+- Ajouter une propriété `public DateTime Timestamp { get; }` aux trois types de matches
+- Corriger toutes les erreurs que cela cause
 
-Et ensuite on continue...
+Rappel au moment de s'y mettre: faire apparaître le numéro de l'étape dans le nom des commits, p.ex.: `feat(ESportApp): Réaliser l'étape 2.2 (Sauver en CSV)`
 
-Faites apparaître le numéro de l'étape dans le nom de vos commits, p.ex.: `feat(ESportApp): Réaliser l'étape 2.2 (Sauver en CSV)`
+Après la pause on a regardé l'énoncé de l'[exercice 4](./exos/fil-rouge/esport/04-performance-map/), qui a pour but de consolider le concept de transformation en générant des **indicateurs** à partir de nos données.
 
-Après la pause on va consolider le concept de transformation en générant des **indicateurs** à partir de nos données avec l'[exercice 4](./exos/fil-rouge/esport/04-performance-map/)
+Petit moment d'explication sur les paramètre CLI:
 
-Ceux qui arrivent au bout de l'exercice peuvent encore approfondir avec l'étape bonus et/ou les exercices [Market Is Back](./exos/mib-map/README.md) ou [Rando](./exos/rando/README.md)
+- Comment les passer depuis Visual Studio (Déboguer > Propriété de débogage > Paramètres de ligne de commande)
+- Comment les traiter `static void Main(string[] args)`
+
+Situation en fin de matinée:
+|           | Présent |  2.1  |  2.2  |  2.3   |  2.4   |  3.1   |  3.2   |  3.3   |  4.1   |  4.2   |  4.3   |  4.4   |
+| --------- | :-----: | :---: | :---: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| albert    |    _    |  ok   |       | **OK** |        |        |   KO   |        |        |        |        |        |
+| damienc   |    _    |  ok   |  ok   |   ok   | **OK** | **OK** |        |        |        |        |        |        |
+| damienr   |    _    |  ok   |  ok   |   ok   |   ok   | **OK** | **OK** | **OK** | **OK** | **OK** | **OK** | **OK** |
+| erdem     |         |  ok   |  ok   |   ok   |        |        |        |        |        |        |        |        |
+| gianmarco |    _    |  ok   |  ok   |   ok   |        | **OK** | **OK** |        |        |        |        |        |
+| gillian   |         |  ok   |  ok   |        |        |        |        |        |        |        |        |        |
+| kiril     |    _    |  ok   |  ok   |   ok   | **OK** | **OK** | **OK** |        |        |        |        |        |
+| sacha     |    _    |  ok   |  ok   |        |   ok   | **OK** | **OK** | **OK** |        |        |        |        |
+| snehan    |    _    |  ok   |  ok   |   ok   | **OK** | **OK** | **OK** |        |        |        |        |        |
+| theophile |         |  ok   |  ok   |        |   ok   |        |        |        |        |        |        |        |
+| tony      |    _    |  ok   |  ok   |   ok   |   ok   | **OK** | **OK** | **OK** | **OK** |        |        |        |
+| zidane    |         |  ok   |  ok   |        |        |        |        |        |        |        |        |        |
+
+Cette étape conclut la thématique "Transformer". Le checkpoint #4 portera sur les même contenus théorique, mais devrait être plus facile pour vous avec l'expérience acquise ce matin.
+
+La semaine prochaine, on abordera la thématique "Réduire".
+
+## Etape 5
+
+### Lundi 21 septembre
+
+C'est un jour de repos (Jeûne Fédéral)
+
+### Mercredi 23 septembre
+
+On fait le checkpoint #4, qui n'aborde aucun thème nouveau. On reste sur le filtrage et la projection.
+
+Le thème de la semaine, par contre, est un gros morceau: réduire.
+
+Jusqu'ici, avec `Select`, les transformations de données étaient un pour un, c'est-à-dire que chaque élément de notre collection était transformé en un élément de type différent:
+
+- Objet en nombre (KDA)
+- Objet en objet (OrderSummary)
+- Nombre en objet (Génération à partir de `Range`).
+
+Dans tous ces cas, la collection obtenue après `Select` a la même longueur que la collection originale.
+
+Nous allons voir maintenant des opérations qui synthétisent plusieurs éléments pour produire un résultat plus compact:
+
+| Catégorie            | Entrée     | Sortie                | Exemples                                |
+| -------------------- | ---------- | --------------------- | --------------------------------------- |
+| Test                 | collection | bool                  | `Any`, `All`, `Contains`                |
+| Agrégation numérique | collection | valeur                | `Sum`, `Min`, `Max`, `Average`, `Count` |
+| Réduction générale   | collection | valeur/objet          | `Aggregate`                             |
+| Regroupement         | collection | collection de groupes | `GroupBy`                               |
+| Indexation           | collection | autre structure       | `ToDictionary`, `ToHashSet`             |
+
+Pour commencer, on regarde la [théorie de l'agrégation](./supports/source/04-Reduce.md).
+
+Et ensuite, on met tout cela en pratique avec [l'exercice 5](./exos/fil-rouge/esport/05-classement-fold/) du fil rouge.
+
+#### Bilan
+
+Un mot : Inquiétude
+
+J'observe de nombreux signaux dérangeant:
+
+- Très (trop) peu de commits effectués sur une durée de plus de 1h30 de pratique
+- Des commits "miracle", genre trios nouveaux fichiers d'un bloc qui résolvent en une fois un problème complexe
+- Des commits non contrôlés, qui réintroduisent la classe DataPoint qu'on avait convenu d'abandonner
+- Des pratiques contraires à celle qui vous ont été enseignées (déclaration de classe dans un bloc de code par exemple)
+- Du code d'un niveau qui ne me semble pas compatible avec celui de son auteur présumé
+- Des fenêtres qui disparaissent de l'écran, ou des discussions qui s'arrêtent dès que je m'approche à moins de deux mètres
+- L'absence de traces d'activités de rattrapage pour ceux qui étaient "absents la dernière fois"
+- Le peu de temps qui me semble investi dans la révision en vue des checkpoints. Les résultats du dernier en date tendent à confirmer cette impression.
+
+Ce qui m'inquiète n'est pas la note que vous obtiendrez à ce module: avec le nombre de notes obtenues sur les deux premières années et vos moyennes actuelle, ce n'est pas une mauvaise note de module qui va vous faire couler.  
+Ce qui m'inquiète, me désole et me fatigue, c'est la manière de fonctionner de certains, qui relève plus de l'écolier que du professionnel. Ce qui était acceptable en début de première année ne l'est plus maintenant que vous êtes à quelques mois de partir en stage en entreprise.  
+
+L'IA n'est **PAS** votre amie si vous l'utilisez pour faire le travail que je vous demande à votre place.  
+
+Comme je l'ai dit ce matin, ce feedback ne s'applique pas entièrement à chacun d'entre vous. Ceux qui ne sont que pas - ou peu - concernés sauront se reconnaître.
+
+En termes d'avancement dans l'exercice 5, il est globalement inexistant. Il y a quatre implémentations de MME en tout dont deux ne me semblent pas avoir été écrites par leurs propriétaires. En d'autres termes: la partie 5.1 est très partiellement entamée et c'est tout.
+
+## Etape 6
+
+### Lundi 21 septembre
+
+Remise en route après deux semaines d'inactivité sur le projet:
+
+- Bien faire le point de situation de son projet: après la semaine prochaine (donc dans 8 périodes), on arrive au 80%
+- Compléter la partie bilan du rapport si votre planification initiale prévoyait du travail lundi passé et qu'il n'a pas été fait...
+- Je me renseigne sur Avalonia
+- Chacun avance et je tourne parmi vous
+
+#### Bilan
+
+- J'ai pu passer vers toutes les personnes que je n'ai pas vues la dernière fois
+- J'ai eu des réponses diverses sur Avalonia. Rappel: le contenu de votre repo doit me permettre d'exécuter votre app. Si je ne connais pas la techno, votre rapport doit me guider!
+- La consigne concernant le jdt a bien passé: tous (sauf un -> joker brûlé) l'ont mis à jour
+
+### Mercredi 30
+
+On fait le checkpoint #5 qui porte principalement sur la réduction.
+
+On fait l'évaluation formative (correction en DoJo après la pause).
+
+Chacun continue les étapes de ESportApp

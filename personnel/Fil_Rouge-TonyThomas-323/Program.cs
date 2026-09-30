@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Intrinsics.Arm;
 using System.Threading.Tasks.Sources;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Fil_Rouge_TonyThomas_323
 {
@@ -128,8 +129,16 @@ namespace Fil_Rouge_TonyThomas_323
             var kdaValorant = sanitizedValorant.Transform(valorantMapper);
             var kdaLol = sanitizedLol.Transform(lolMapper);
 
-            
+            // Evaluator
+            double evaluator(double kda, double min, double max)
+            {
+                return (kda - min) / (max - min);
+            }
 
+            // Normalize kda
+            var normalizedKdaCs2 = kdaCs2.Normalize(evaluator);
+            var normalizedKdaValorant = kdaValorant.Normalize(evaluator);
+            var normalizedKdaLol = kdaLol.Normalize(evaluator);
 
             // Find Args and use them
             string? gameArgs = args.Contains("--game") ? args[Array.IndexOf(args, "--game") + 1] : null;

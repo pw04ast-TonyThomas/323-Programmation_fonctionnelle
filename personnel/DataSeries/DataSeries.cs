@@ -50,12 +50,14 @@ namespace DataSeries
             return DataSeries<TResult>.From(_data.Select(x => mapper(x)));
         }
 
-        public DataSeries<TResult> Normalize<TResult>(Func<T, T, T, TResult> evaluator)
+        public DataSeries<double> Normalize(Func<T, T, T, double> evaluator)
         {
-            var min = _data.Min();
-            var max = _data.Max();
+            var values = _data;
 
-            return DataSeries<TResult>.From(_data.Select(x => evaluator(x, min, max)));
+            var min = values.Min();
+            var max = values.Max();
+
+            return DataSeries<double>.From(values.Select(x => evaluator(x, min, max)));
         }
     }
 }
